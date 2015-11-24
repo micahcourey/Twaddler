@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Twaddler</title>
+  </head>
+  <body ng-app="twaddler">
+    <div id="main" ng-controller="mainCtrl">
+      <form ng-submit="twaddle()">
+        <input required type="text"  placeholder="Name here" ng-model="newTwaddle.creator"/>
+        <textarea required maxLength="250" rows="3" placeholder="Twaddle here" ng-model="newTwaddle.text"></textarea>
+        <input class="button" type="submit" value="Twaddle"/>
+      </form>
+      <div id="twaddles">
+        <h4>Twaddler Feed</h4>
+        <div class="twaddle" ng-repeat="twaddle in twaddles | orderBy: 'created': true" ng-class-odd="'odd'" ng-class-even="'even'">
+          <p>{{twaddle.creator}} twaddled {{twaddle.text}} at {{twaddle.created}}</p>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js" type="text/javascript"></script>
+    <script src="scripts/app.js" type="text/javascript"></script>
+  </body>
+</html>
