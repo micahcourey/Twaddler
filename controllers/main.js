@@ -1,6 +1,6 @@
-var twaddler = angular.module('twaddler', [])
+twaddler.controller('mainCtrl', function mainCtrl($scope, $stateParams) {
 
-twaddler.controller('mainCtrl', function($scope) {
+
   $scope.twaddles = [];
   $scope.newTwaddle = {creator: '', text: '', created: ''};
 

@@ -3,22 +3,34 @@
   <head>
 
     <title>Twaddler</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.0.3/foundation.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
   <body ng-app="twaddler">
-    <div id="main" ng-controller="mainCtrl">
+    <div ui-view="header"></div>
+    <div id="main" class="row" ng-controller="mainCtrl">
+      <div class="large-3 columns"></div>
+      <h4>Post a Twaddle</h4>
       <form ng-submit="twaddle()">
         <input required type="text"  placeholder="Name here" ng-model="newTwaddle.creator"/>
         <textarea required maxLength="250" rows="3" placeholder="Twaddle here" ng-model="newTwaddle.text"></textarea>
         <input class="button" type="submit" value="Twaddle"/>
       </form>
-      <div id="twaddles">
+
+
+      <div id="twaddles" class="large-6 columns">
         <h4>Twaddler Feed</h4>
         <div class="twaddle" ng-repeat="twaddle in twaddles | orderBy: 'created': true" ng-class-odd="'odd'" ng-class-even="'even'">
           <p>{{twaddle.creator}} twaddled {{twaddle.text}} at {{twaddle.created}}</p>
         </div>
       </div>
+
+      <div class="large-3 columns"></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js" type="text/javascript"></script>
-    <script src="scripts/app.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="app.js" type="text/javascript"></script>
+    <!-- <script src="controllers/main.js"></script> -->
+    <script src="controllers/headersCtrl.js"></script>
   </body>
 </html>
