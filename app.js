@@ -1,13 +1,12 @@
 var twaddler = angular.module('twaddler', [])
 
-.directive('header', function() {
+.directive('navbar', function() {
   return {
-    templateUrl: "templates/header.html",
-    controller: "headersCtrl"
+    templateUrl: "templates/navbar.html"
   }
 })
 
-twaddler.controller('mainCtrl', function mainCtrl($scope) {
+twaddler.controller('mainCtrl', function($scope) {
 
   $scope.twaddles = [];
   $scope.newTwaddle = {creator: '', text: '', created: ''};
@@ -18,6 +17,20 @@ twaddler.controller('mainCtrl', function mainCtrl($scope) {
     $scope.newTwaddle = {creator: '', text: '', created: ''};
   };
 });
+
+twaddler.controller('authCtrl', function($scope) {
+  $scope.user = {username: '', password: ''};
+  $scope.error_message = '';
+
+  $scope.login = function() {
+    $scope.error_message = 'login request for ' + $scope.user.username;
+  };
+
+  $scope.signup = function() {
+    $scope.error_message = 'signup request for ' + $scope.user.username;
+  };
+});
+
 
 // twaddler.config(function($stateProvider, $urlRouterProvider) {
 //   $stateProvider.state('home', {
