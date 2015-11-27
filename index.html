@@ -9,29 +9,13 @@
   <body ng-app="twaddler">
     <navbar></navbar>
     <div id="main" class="row" ng-controller="mainCtrl">
-      <div class="large-3 columns">
-      <h4>Post a Twaddle</h4>
-      <form ng-submit="twaddle()">
-        <input required type="text"  placeholder="Name here" ng-model="newTwaddle.creator"/>
-        <textarea required maxLength="250" rows="3" placeholder="Twaddle here" ng-model="newTwaddle.text"></textarea>
-        <input class="button" type="submit" value="Twaddle"/>
-      </form>
-      </div>
 
-      <div id="twaddles" class="large-6 columns">
-        <h4>Twaddler Feed</h4>
-        <div class="twaddle" ng-repeat="twaddle in twaddles | orderBy: 'created': true" ng-class-odd="'odd'" ng-class-even="'even'">
-          <small>posted by @{{twaddle.creator}}</small>
-          <small class="pull-right">at {{twaddle.created  | date:"h:mma 'on' MMM d, y"}}</small>
-          <p>{{twaddle.text}}</p>
+        <div ng-view></div>
 
-        </div>
-      </div>
-
-      <div class="large-3 columns">Login</div>
+        
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
     <script src="app.js" type="text/javascript"></script>
     <!-- <script src="controllers/main.js"></script> -->
     <script src="controllers/headersCtrl.js"></script>

@@ -1,6 +1,22 @@
-var twaddler = angular.module('twaddler', [])
+var twaddler = angular.module('twaddler', ['ngRoute']);
 
-.directive('navbar', function() {
+twaddler.config(function($routeProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: 'templates/main.html',
+      controller: 'mainCtrl'
+    })
+    .when('/login', {
+      templateUrl: 'templates/login.html',
+      controller: 'authController'
+    })
+    .when('/signup', {
+      templateUrl: 'templates/signup.html',
+      controller: 'authController'
+    });
+});
+
+twaddler.directive('navbar', function() {
   return {
     templateUrl: "templates/navbar.html"
   }
