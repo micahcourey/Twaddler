@@ -46,25 +46,3 @@ twaddler.controller('authCtrl', function($scope) {
     $scope.error_message = 'signup request for ' + $scope.user.username;
   };
 });
-
-
-// twaddler.config(function($stateProvider, $urlRouterProvider) {
-//   $stateProvider.state('home', {
-//     url: "",
-//     views: {
-//       'header': {
-//         templateUrl: "templates/header.html",
-//         controller: "headersCtrl"
-//       }
-//       'form': {
-//         templateUrl: "templates/form.html",
-//         controller: "mainCtrl"
-//       },
-//       'feed': {
-//         templateUrl: "templates/feed.html",
-//         controller: "mainCtrl"
-//       }
-//     }
-//   });
-//
-// });
