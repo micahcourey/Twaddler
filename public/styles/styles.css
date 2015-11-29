@@ -1,3 +1,11 @@
+/***********Navbar************/
+
+#title {
+  color: #000;
+  font-weight: bold;
+}
+
+/************Feed*************/
 .twaddle {
   padding: 10px;
   margin-bottom: 5px;
