@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new mongoose.Schema({
-	created_by: { type: Schema.ObjectId, ref: 'User' },	
-	created_at: {type: Date, default: Date.now},
+	creator: { type: Schema.ObjectId, ref: 'User' },
+	created: {type: Date, default: Date.now},
 	text: String
 });
 
 var userSchema = new mongoose.Schema({
 	username: String,
 	password: String, //hash created from password
-	created_at: {type: Date, default: Date.now}
+	created: {type: Date, default: Date.now}
 })
 
 

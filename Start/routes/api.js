@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+var mongoose = require('mongoose');
+var Post = mongoose.model('Post')
 function isAuthenticated(req, res, next) {
   if(req.method === "GET"){
     return next();
@@ -15,27 +16,63 @@ function isAuthenticated(req, res, next) {
 router.use('/posts', isAuthenticated);
 
 router.route('/posts')
-
+   // create a new post
   .post(function(req, res) {
-    //temp
-    res.send({message: 'Need to create new post'});
+
+    var post = new Post();
+    post.text = req.body.text;
+    post.creator = req.body.creator;
+    post.save(function(err, post) {
+      if(err){
+        return res.send(500, err);
+      }
+      return res.json(post);
+    });
   })
   .get(function(req, res) {
-    res.send({message: 'Need to return all posts'});
+
+    Post.find(function(err, posts) {
+      if(err){
+        return res.send(500, err);
+      }
+      return res.send(200, posts);
+    });
   })
 
 router.route('/posts/:id')
+  //update existing post
+  .get(function(req, res){
+    Post.findById(req.params.id, function(err, post){
+      if(err)
+        res.send(err);
+      res.json(post);
+    });
+  })
   //return a post
   .put(function(req, res) {
-    return res.send({message: 'Need to return post with ID ' + req.params.id});
-  })
-  //update existing post
-  .get(function(req, res) {
-    return res.send({message: 'Need to modify post with ID ' + req.params.id});
+    Post.findById(req.params.id, function(err, post){
+      if(err)
+        res.send(err);
+
+      post.username = req.body.creator;
+      post.text = req.body.text;
+
+      post.save(function(err, post){
+        if(err)
+          res.send(err);
+        res.json(post);
+      });
+    });
   })
   //delete existing post
   .delete(function(req, res) {
-    return res.send({message: 'Need to delete post with ID ' + req.params.id});
+    Post.remove({
+      _id: req.params.id
+    }, function(err) {
+      if(err)
+        res.send(err);
+      res.json("deleted :(");
+    });
   });
 
 module.exports = router;
