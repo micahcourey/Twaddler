@@ -1,4 +1,4 @@
 <h4>Twaddler Feed</h4>
-<div class="twaddle" ng-repeat="twaddle in twaddles | orderBy: 'created': true" ng-class-odd="'odd'" ng-class-even="'even'">
-  <p>{{twaddle.creator}} twaddled {{twaddle.text}} at {{twaddle.created}}</p>
+<div class="twaddle" ng-repeat="post in posts | orderBy: 'created': true" ng-class-odd="'odd'" ng-class-even="'even'">
+  <p>{{post.creator}} twaddled {{post.text}} at {{post.created}}</p>
 </div>

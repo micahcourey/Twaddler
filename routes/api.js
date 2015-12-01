@@ -54,7 +54,7 @@ router.route('/posts/:id')
       if(err)
         res.send(err);
 
-      post.username = req.body.creator;
+      post.creator = req.body.creator;
       post.text = req.body.text;
 
       post.save(function(err, post){
