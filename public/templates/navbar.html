@@ -10,8 +10,9 @@
         <li><a href="#">Three</a></li>
       </ul>
     </li> -->
-    <li><a href="#/signup">Signup</a></li>
-    <li><a href="#/login">Login</a></li>
+    <li><a href="#/signup" ng-hide="authenticated">Signup</a></li>
+    <li><a href="#/login" ng-show="authenticated">Login</a></li>
+    <li><a href="#" ng-click="signout()" ng-show="authenticated">Sign out</a></li>
   </ul>
   </div>
   <div class="top-bar-right">

@@ -1,4 +1,13 @@
-var twaddler = angular.module('twaddler', ['ngRoute']);
+var twaddler = angular.module('twaddler', ['ngRoute']).run(function($rootScope, $http) {
+  $rootScope.authenticated = false;
+  $rootScope.current_user = '';
+
+  $rootScope.signout = function() {
+    $http.get('auth/signout');
+    $rootScope.authenticated = false;
+    $rootScope.current_user = '';
+  };
+});
 
 twaddler.config(function($routeProvider) {
   $routeProvider
@@ -20,29 +29,55 @@ twaddler.directive('navbar', function() {
   return {
     templateUrl: "templates/navbar.html"
   }
-})
+});
 
-twaddler.controller('mainCtrl', function($scope) {
+twaddler.factory('postService', function($http) {
+  var baseUrl = "/api/posts";
+  var factory = {};
+  factory.getAll = function() {
+    return $http.get(baseUrl);
+  }
+  return factory;
+});
 
-  $scope.twaddles = [];
+twaddler.controller('mainCtrl', function($scope, postService) {
+  $scope.twaddles = postService.query();
   $scope.newTwaddle = {creator: '', text: '', created: ''};
 
   $scope.twaddle = function() {
+    $scope.newTwaddle.creator = $rootScope.current_user;
     $scope.newTwaddle.created = Date.now();
-    $scope.twaddles.push($scope.newTwaddle);
-    $scope.newTwaddle = {creator: '', text: '', created: ''};
+    postService.save($scope.newPost, function(){
+      $scope.twaddles = postService.query();
+      $scope.newTwaddle = {creator: '', text: '', created: ''};
+    });
   };
 });
 
-twaddler.controller('authCtrl', function($scope) {
+twaddler.controller('authCtrl', function($scope, $http, $rootScope, $location) {
   $scope.user = {username: '', password: ''};
   $scope.error_message = '';
 
   $scope.login = function() {
-    $scope.error_message = 'login request for ' + $scope.user.username;
+    $http.post('/auth/login', $scope.user).success(function(data){
+      if(data.state == 'success'){
+        $rootScope.authenticated = true;
+        $rootScope.current_user = data.user.username;
+      } else {
+        $scope.error_message = data.message;
+      }
+    });
   };
 
   $scope.signup = function() {
-    $scope.error_message = 'signup request for ' + $scope.user.username;
+    $http.post('auth/signup', $scope.user).success(function(data){
+      if(data.state == 'success'){
+        $rootScope.authenticated = true;
+        $rootScope.current_user = data.user.username;
+        $location.path('/');
+      } else {
+        $scope.error_message = data.message
+      }
+    });
   };
 });
