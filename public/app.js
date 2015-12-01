@@ -1,4 +1,4 @@
-var twaddler = angular.module('twaddler', ['ngRoute']).run(function($rootScope, $http) {
+var twaddler = angular.module('twaddler', ['ngRoute', 'ngResource']).run(function($http, $rootScope) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
 
@@ -17,11 +17,11 @@ twaddler.config(function($routeProvider) {
     })
     .when('/login', {
       templateUrl: 'templates/login.html',
-      controller: 'authController'
+      controller: 'authCtrl'
     })
     .when('/signup', {
       templateUrl: 'templates/signup.html',
-      controller: 'authController'
+      controller: 'authCtrl'
     });
 });
 
@@ -31,27 +31,22 @@ twaddler.directive('navbar', function() {
   }
 });
 
-twaddler.factory('postService', function($http) {
-  var baseUrl = "/api/posts";
-  var factory = {};
-  factory.getAll = function() {
-    return $http.get(baseUrl);
-  }
-  return factory;
+twaddler.factory('postService', function($resource) {
+  return $resource('/api/posts/:id');
 });
 
-twaddler.controller('mainCtrl', function($scope, postService) {
-  $scope.twaddles = postService.query();
-  $scope.newTwaddle = {creator: '', text: '', created: ''};
+twaddler.controller('mainCtrl', function(postService, $scope, $rootScope) {
+  $scope.posts = postService.query();
+	$scope.newPost = {created_by: '', text: '', created_at: ''};
 
-  $scope.twaddle = function() {
-    $scope.newTwaddle.creator = $rootScope.current_user;
-    $scope.newTwaddle.created = Date.now();
-    postService.save($scope.newPost, function(){
-      $scope.twaddles = postService.query();
-      $scope.newTwaddle = {creator: '', text: '', created: ''};
-    });
-  };
+	$scope.post = function() {
+	  $scope.newPost.creator = $rootScope.current_user;
+	  $scope.newPost.created = Date.now();
+	  postService.save($scope.newPost, function(){
+	    $scope.posts = postService.query();
+	    $scope.newPost = {creator: '', text: '', created: ''};
+	  });
+	};
 });
 
 twaddler.controller('authCtrl', function($scope, $http, $rootScope, $location) {
@@ -63,6 +58,7 @@ twaddler.controller('authCtrl', function($scope, $http, $rootScope, $location) {
       if(data.state == 'success'){
         $rootScope.authenticated = true;
         $rootScope.current_user = data.user.username;
+        $location.path('/');
       } else {
         $scope.error_message = data.message;
       }
