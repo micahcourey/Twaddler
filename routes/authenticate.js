@@ -5,8 +5,8 @@ module.exports = function(passport){
 
   //sends successful state back to angularjs
   router.get('/success', function(req, res){
-       res.send({state: 'success', user: req.user ? req.user : null});
-   });
+    res.send({state: 'success', user: req.user ? req.user : null});
+  });
   //sends failure login state back to angularjs
   router.get('/failure', function(req, res) {
     res.send({state: 'failure', user: null, message: "Invalid username or password"});

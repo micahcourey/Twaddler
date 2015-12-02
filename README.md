@@ -7,4 +7,4 @@ An online social networking app that allows users to send messages known as 'twa
 
 Technologies Used
 ----------
-JavaScript, AngularJS, Node.js, Express, MongoDB, HTML, Bootstrap, CSS
+JavaScript, AngularJS, Node.js, Express, MongoDB, Foundation 6, HTML, CSS

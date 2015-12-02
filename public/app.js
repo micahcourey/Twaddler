@@ -1,4 +1,4 @@
-var twaddler = angular.module('twaddler', ['ngRoute', 'ngResource']).run(function($http, $rootScope) {
+var twaddler = angular.module('twaddler', ['ngRoute', 'ngResource']).run(function($rootScope, $http) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
 
@@ -35,21 +35,25 @@ twaddler.factory('postService', function($resource) {
   return $resource('/api/posts/:id');
 });
 
-twaddler.controller('mainCtrl', function(postService, $scope, $rootScope) {
+twaddler.controller('mainCtrl', function($rootScope, $scope, postService) {
   $scope.posts = postService.query();
-	$scope.newPost = {created_by: '', text: '', created_at: ''};
+	$scope.newPost = {created_by: '', text: '', created: ''};
 
 	$scope.post = function() {
-	  $scope.newPost.creator = $rootScope.current_user;
+	  $scope.newPost.created_by = $rootScope.current_user;
 	  $scope.newPost.created = Date.now();
 	  postService.save($scope.newPost, function(){
 	    $scope.posts = postService.query();
-	    $scope.newPost = {creator: '', text: '', created: ''};
+	    $scope.newPost = {created_by: '', text: '', created: ''};
 	  });
+	};
+  $scope.delete = function(post)	{
+		postService.delete({id: post._id});
+		$scope.posts = postService.query();
 	};
 });
 
-twaddler.controller('authCtrl', function($scope, $http, $rootScope, $location) {
+twaddler.controller('authCtrl', function($rootScope, $scope, $http, $location) {
   $scope.user = {username: '', password: ''};
   $scope.error_message = '';
 

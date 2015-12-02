@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Post = mongoose.model('Post')
+var Post = mongoose.model('Post');
+var User = mongoose.model('User');
+
 function isAuthenticated(req, res, next) {
   if(req.method === "GET"){
     return next();
@@ -18,10 +20,12 @@ router.use('/posts', isAuthenticated);
 router.route('/posts')
    // create a new post
   .post(function(req, res) {
-
+    if(!req.isAuthenticated()){
+      return res.send(401, {message: "You are not authorized to post please log in or signup first."})
+    }
     var post = new Post();
     post.text = req.body.text;
-    post.creator = req.body.creator;
+    post.username = req.body.created_by;
     post.save(function(err, post) {
       if(err){
         return res.send(500, err);
@@ -54,7 +58,7 @@ router.route('/posts/:id')
       if(err)
         res.send(err);
 
-      post.creator = req.body.creator;
+      post.username = req.body.created_by;
       post.text = req.body.text;
 
       post.save(function(err, post){
