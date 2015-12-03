@@ -13,7 +13,12 @@ var api = require('./routes/api');
 var authenticate = require('./routes/authenticate')(passport);
 var mongoose = require('mongoose');
 // connect to mongodb
-mongoose.connect('mongodb://localhost/newtwaddler');
+if(process.env.DEV_ENV){
+  mongoose.connect('mongodb://localhost/newtwaddler');
+} else {
+  mongoose.connect('mongodb://twaddler:rEj5HM_uWCo6wSNTqa8C0mPP7vuQcQQVZWfqvwykS0Q-@ds056288.mongolab.com:56288/twaddler');
+}
+
 var app = express();
 
 // view engine setup
