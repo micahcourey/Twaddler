@@ -3,11 +3,12 @@
   <ul class="dropdown menu" data-dropdown-menu>
     <li><a id="title" href="#/">Twaddler</a></li>
 
-    <li ng-show="authenticated">Signed in as {{current_user}}</li>
+
   </ul>
   </div>
   <div class="top-bar-right">
-    <ul class="menu">
+    <ul class="menu" id="links">
+      <li class="sign" ng-show="authenticated">Signed in as {{current_user}} -</li>
       <li><a href="#/signup" ng-hide="authenticated">Signup</a></li>
       <li><a href="#/login" ng-hide="authenticated">Login</a></li>
       <li><a href="#/" ng-click="signout()" ng-show="authenticated">Sign out</a></li>

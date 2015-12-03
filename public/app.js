@@ -1,4 +1,4 @@
-var twaddler = angular.module('twaddler', ['ngRoute', 'ngResource']).run(function($rootScope, $http) {
+var twaddler = angular.module('twaddler', ['ngRoute', 'ngResource', 'angular.filter']).run(function($rootScope, $http) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
 
@@ -29,6 +29,22 @@ twaddler.directive('navbar', function() {
   return {
     templateUrl: "templates/navbar.html"
   }
+});
+
+twaddler.directive('xref',function($route, $location){
+  return {
+    link: function(scope, elm,attr){
+      elm.on('click',function(){
+        if ( $location.path() === attr.xref ) {
+          $route.reload();
+        } else {
+          scope.$apply(function(){
+            $location.path(attr.xref);
+          });
+        }
+      });
+    }
+  };
 });
 
 twaddler.factory('postFactory', function($resource) {

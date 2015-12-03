@@ -1,13 +1,70 @@
-/***********Navbar************/
-#title {
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower|Lato:400,700);
+
+/*************Navbar*************/
+
+.top-bar {
+  background-color: #82A0BC;
+}
+
+a {
   color: #000;
-  font-weight: bold;
+}
+
+a:hover {
+  color: #A7CCED;
+}
+
+#links {
+  font-family: 'Indie Flower', cursive;
+  background-color: #82A0BC;
+  font-size: 22px;
+  padding-bottom: 0;
+}
+
+#title {
+  font-family: 'Indie Flower', cursive;
+  font-size: 28px;
+  color: #000;
+  background-color: #82A0BC;
+  padding-bottom: 0;
+}
+
+.sign {
+  background-color: #82A0BC;
+}
+
+/***************Main Page********/
+
+body {
+  background-color: #FCF7F8;
+  font-family: 'Lato', sans-serif;
+}
+
+.content {
+  margin-top: 24px;
+}
+
+.button {
+  background-color: #82A0BC;
+  color: #000;
+}
+
+#table {
+  margin-top: 0px;
 }
 
 /************Sidebar*************/
-#side-menu {
-  background-color: blue;
+
+.side-menu {
+  margin: 0;
+  padding: 0;
 }
+
+.stack {
+  margin-top: 6px;
+
+}
+
 
 
 /************Feed*************/
@@ -18,9 +75,9 @@
 }
 
 .odd {
-  background-color: #f2f9ff;
+  background-color: #A7CCED;
 }
 
 .even {
-  background-color: #eceff3;
+  background-color: #82A0BC;
 }
