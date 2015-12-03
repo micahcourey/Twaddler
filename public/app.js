@@ -31,29 +31,29 @@ twaddler.directive('navbar', function() {
   }
 });
 
-twaddler.factory('postService', function($resource) {
+twaddler.factory('postFactory', function($resource) {
   return $resource('/api/posts/:id');
 });
 
-twaddler.controller('mainCtrl', function($rootScope, $scope, postService) {
-  $scope.posts = postService.query();
-	$scope.newPost = {created_by: '', text: '', created: ''};
+twaddler.controller('mainCtrl', function(postFactory, $scope, $rootScope) {
+  $scope.posts = postFactory.query();
+	$scope.newPost = {created_by: '', text: '', created_at: ''};
 
 	$scope.post = function() {
 	  $scope.newPost.created_by = $rootScope.current_user;
-	  $scope.newPost.created = Date.now();
-	  postService.save($scope.newPost, function(){
-	    $scope.posts = postService.query();
-	    $scope.newPost = {created_by: '', text: '', created: ''};
+	  $scope.newPost.created_at = Date.now();
+	  postFactory.save($scope.newPost, function(){
+	    $scope.posts = postFactory.query();
+	    $scope.newPost = {created_by: '', text: '', created_at: ''};
 	  });
 	};
   $scope.delete = function(post)	{
-		postService.delete({id: post._id});
-		$scope.posts = postService.query();
+		postFactory.delete({id: post._id});
+		$scope.posts = postFactory.query();
 	};
 });
 
-twaddler.controller('authCtrl', function($rootScope, $scope, $http, $location) {
+twaddler.controller('authCtrl', function($scope, $http, $rootScope, $location) {
   $scope.user = {username: '', password: ''};
   $scope.error_message = '';
 

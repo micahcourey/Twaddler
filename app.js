@@ -4,16 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+var passport = require('passport');
 //initialize mongoose schemas
 require('./models/models');
 var index = require('./routes/index');
 var api = require('./routes/api');
 var authenticate = require('./routes/authenticate')(passport);
-var mongoose = require('mongoose');                         //add for Mongo support
-mongoose.connect('mongodb://localhost/twaddler-testing');              //connect to Mongo
+var mongoose = require('mongoose');
+// connect to mongodb
+mongoose.connect('mongodb://localhost/newtwaddler');
 var app = express();
 
 // view engine setup

@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Twaddle</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <title>Twaddler</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.0.3/foundation.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
-  <body>
-    <h1>Welcome to Twaddle!</h1>
-    <p>Get Twaddlin!</p>
+  <body ng-app="twaddler">
+    <navbar></navbar>
+    <div id="main" class="row" ng-controller="mainCtrl">
+
+      <div ng-view></div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-resource.min.js"></script>
+    <script src="app.js" type="text/javascript"></script>
   </body>
 </html>
