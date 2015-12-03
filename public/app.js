@@ -1,4 +1,4 @@
-var twaddler = angular.module('twaddler', ['ngRoute', 'ngResource', 'angular.filter']).run(function($rootScope, $http) {
+var twaddler = angular.module('twaddler', ['ngRoute', 'ngResource', 'angular.filter', 'ngSanitize']).run(function($rootScope, $http) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
 
@@ -51,7 +51,7 @@ twaddler.factory('postFactory', function($resource) {
   return $resource('/api/posts/:id');
 });
 
-twaddler.controller('mainCtrl', function(postFactory, $scope, $rootScope) {
+twaddler.controller('mainCtrl', function(postFactory, $scope, $rootScope, $filter) {
   $scope.posts = postFactory.query();
 	$scope.newPost = {created_by: '', text: '', created_at: ''};
 

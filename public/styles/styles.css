@@ -11,7 +11,7 @@ a {
 }
 
 a:hover {
-  color: #A7CCED;
+  color: #23395B;
 }
 
 #links {
@@ -36,7 +36,7 @@ a:hover {
 /***************Main Page********/
 
 body {
-  background-color: #FCF7F8;
+  background-color: #FEFEFE;
   font-family: 'Lato', sans-serif;
 }
 
@@ -45,8 +45,12 @@ body {
 }
 
 .button {
-  background-color: #82A0BC;
+  background-color: #A7CCED;
   color: #000;
+}
+
+.button:hover {
+  background-color: #82A0BC;
 }
 
 #table {
@@ -71,7 +75,7 @@ body {
 .twaddle {
   padding: 10px;
   margin-bottom: 5px;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
 }
 
 .odd {
