@@ -40,6 +40,10 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.post {
+  font-size: 1.2em;
+}
+
 .content {
   margin-top: 24px;
 }

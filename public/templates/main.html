@@ -1,7 +1,7 @@
 <div class="content">
 
 
-  <div class="small-9 columns">
+  <div class="medium-9 columns">
     <form ng-Submit="post()" ng-show='authenticated'>
       <h5>Welcome {{current_user}}</h5>
       <div class="input-group">
@@ -17,14 +17,14 @@
       <div class="twaddle" ng-repeat="post in posts | orderBy: 'created_at': true" ng-class-odd="'odd'" ng-class-even="'even'">
         <small>Posted by @{{post.created_by}}</small>
         <small class="float-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
-        <div ng-bind-html="post.text | linky">
+        <div  class="post" ng-bind-html="post.text | linky">
           <p>{{post.text}}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="table" class="small-3 columns">
+  <div id="table" class="medium-3 columns">
     <table class="hover">
       <thead>
         <tr>
