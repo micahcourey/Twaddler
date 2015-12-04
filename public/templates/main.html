@@ -1,17 +1,18 @@
 <div class="content">
   <div class="large-9 columns">
     <form ng-Submit="post()" ng-show='authenticated'>
-      <h5>Welcome {{current_user}}</h5>
+      <h4>Welcome {{current_user}}</h4>
       <div class="input-group">
-        <input class="input-group-field" type="text" required maxLength="250" rows="3" placeholder="Twaddle here" ng-model="newPost.text">
+        <input class="input-group-field" type="text" required maxLength="250" placeholder="Twaddle here" ng-model="newPost.text">
         <div class="input-group-button">
           <input class="button" type="submit" ng-disabled="!post-form.$valid" value="Twaddle"/>
         </div>
       </div>
     </form>
     <div id="twaddles">
-      <h5><a class="float-right" xref="/">Refresh Feed</a></h5>
-      <h5>Twaddler Feed</h5>
+
+      <a class="float-left" xref="/"><img class="refresh" src="http://simpleicon.com/wp-content/uploads/refresh-256x256.png" alt="icon to refresh the page"></a>
+      <h4 class="text-center">Twaddler Feed</h4>
       <div class="twaddle" ng-repeat="post in posts | orderBy: 'created_at': true" ng-class-odd="'odd'" ng-class-even="'even'">
         <small>Posted by @{{post.created_by}}</small>
         <small class="float-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>

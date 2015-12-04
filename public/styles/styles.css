@@ -17,13 +17,14 @@ a:hover {
 #links {
   font-family: 'Indie Flower', cursive;
   background-color: #82A0BC;
-  font-size: 22px;
+  font-size: 24px;
   padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 #title {
   font-family: 'Indie Flower', cursive;
-  font-size: 28px;
+  font-size: 30px;
   color: #000;
   background-color: #82A0BC;
   padding-bottom: 0;
@@ -64,6 +65,15 @@ body {
 
 #table {
   margin-top: 0px;
+}
+
+.refresh {
+  height: 28px;
+}
+
+.text-center {
+  margin-right: 32px;
+  margin-bottom: 0;
 }
 
 /************Sidebar*************/
