@@ -2,7 +2,7 @@
 
 /*************Navbar*************/
 
-.top-bar {
+.top-bar, .sign {
   background-color: #82A0BC;
 }
 
@@ -11,7 +11,7 @@ a {
 }
 
 a:hover {
-  color: #23395B;
+  color: #083D77;
 }
 
 #links {
@@ -27,9 +27,10 @@ a:hover {
   color: #000;
   background-color: #82A0BC;
   padding-bottom: 0;
+  margin-bottom: 0;
 }
 
-.sign {
+.menu {
   background-color: #82A0BC;
 }
 
@@ -42,6 +43,10 @@ body {
 
 .post {
   font-size: 1.2em;
+}
+
+.post a {
+  color: #083D77;
 }
 
 .content {
