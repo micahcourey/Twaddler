@@ -3,7 +3,7 @@ Twaddler
 
 By Micah Courey, 24-Nov-2015
 
-An online social networking app that allows users to send messages known as 'twaddles' to one another.
+A online social networking app that allows users to send messages known as 'twaddles' to one another.
 Check it out, signup and post a twaddle at http://twaddler.azurewebsites.net
 
 Technologies Used
